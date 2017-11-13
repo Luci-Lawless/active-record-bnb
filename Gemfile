@@ -17,6 +17,7 @@ gem 'devise'
 
 gem 'active_model_serializers', '~> 0.10.0'
 
+gem 'has_secure_token'
 
 group :development, :test do
   gem 'byebug', platform: :mri

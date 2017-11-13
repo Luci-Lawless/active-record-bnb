@@ -1,5 +1,5 @@
 class Api::RoomsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
 
   def index
     rooms = Room.all
@@ -12,16 +12,17 @@ class Api::RoomsController < ApplicationController
   end
 
   def create
-    room = Room.new(room_params)
+    room = @user.rooms.build(room_params)
 
     if room.save
-      render status: 200, json: room
+      render status: 201, json: room
     else
       render status: 422, json: {
         errors: room.errors
       }.to_json
     end
   end
+
 
   def destroy
     room = Room.find(params[:id])
